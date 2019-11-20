@@ -28,22 +28,26 @@ mongoose.connect(MONGODB_URI);
 
 app.get("/scrape", function (req, res) {
 
-    axios.get("https://www.reddit.com/").then(function (response) {
+    axios.get("https://www.eventhubs.com/").then(function (response) {
 
         var $ = cheerio.load(response.data);
 
-        $("h3").each(function (i, element) {
+        $(".storyabstract").each(function (i, element) {
 
             var result = {};
 
             result.title = $(this)
+                .children()
+                .children()
                 .text();
             result.link = $(this)
-                .parent()
-                .parent("a")
+                .children()
+                .children()
                 .attr("href");
             result.description = $(this)
+                .children("p + p")
                 .text();
+
 
             db.Article.create(result)
                 .then(function (dbArticle) {
@@ -56,7 +60,7 @@ app.get("/scrape", function (req, res) {
                 });
         });
 
-        res.send("Scrape Complete");
+        res.render("index");
     });
 });
 
