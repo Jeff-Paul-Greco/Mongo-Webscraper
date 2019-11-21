@@ -1,0 +1,16 @@
+body {
+    background-image: URL("./../img/Black-Gradient-Background.jpg");
+}
+
+.scrape-page-header {
+    padding-top: 5%;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.scrape-page-header2 {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 50px;
+    font-weight: bolder;
+}

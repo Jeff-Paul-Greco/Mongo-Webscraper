@@ -40,13 +40,16 @@ app.get("/scrape", function (req, res) {
                 .children()
                 .children()
                 .text();
-            result.link = $(this)
+            result.link = "https://www.eventhubs.com" + $(this)
                 .children()
                 .children()
                 .attr("href");
             result.description = $(this)
                 .children("p + p")
                 .text();
+
+            result.description = result.description.replace(/ \ /g, "");
+            result.title = result.title.replace(/ \ /g, "");
 
 
             db.Article.create(result)
@@ -58,14 +61,23 @@ app.get("/scrape", function (req, res) {
 
                     console.log(err);
                 });
-        });
 
-        res.render("index");
+        });
+        res.redirect("/");
     });
 });
 
 app.get("/", function (err, res) {
-    res.render("index");
+    db.Article.find({})
+        .then(function (dbArticle) {
+            res.render("index", {
+                articles: dbArticle
+            });
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+
 });
 
 app.get("*", function (req, res) {

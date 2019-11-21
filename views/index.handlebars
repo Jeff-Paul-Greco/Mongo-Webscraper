@@ -1,1 +1,34 @@
-<p>Hello World</p>
+<div class="scrape-page-header white-text center">Mongo Eventhubs.com</div>
+<div class="scrape-page-header2 white-text center">News Scraper</div>
+
+<div class="container">
+
+    {{#each articles}}
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-panel teal">
+                    <span class="white-text teal">
+                        <h5>{{this.title}}</h5>
+                    </span>
+                </div>
+                <div class="card-panel white">
+                    <span class="black-text white">
+                        <ul>
+                            <li>
+                                <h5>Description</h5>
+                            </li>
+                            <li>{{this.description}}</li>
+                            <li>
+                                <h5>Link</h5>
+                            </li>
+                            <li>{{this.link}}</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
