@@ -77,7 +77,28 @@ app.get("/", function (err, res) {
         .catch(function (err) {
             res.json(err);
         });
+});
 
+app.get("/saved", function (err, res) {
+    db.Article.find({})
+        .then(function (dbArticle) {
+            res.render("saved", {
+                articles: dbArticle
+            });
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+app.get("/clear", function (err, res) {
+    db.Article.deleteMany({})
+        .then(function () {
+            res.render("index");
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
 });
 
 app.get("*", function (req, res) {
