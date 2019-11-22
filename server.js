@@ -48,6 +48,10 @@ app.get("/scrape", function (req, res) {
                 .children("p + p")
                 .text();
 
+            var titleCut = result.title.split("Continue", 1);
+            console.log(titleCut);
+            result.title = titleCut[0]
+
             result.description = result.description.replace(/ \ /g, "");
             result.title = result.title.replace(/ \ /g, "");
 
