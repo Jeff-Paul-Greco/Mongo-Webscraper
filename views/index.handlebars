@@ -9,13 +9,13 @@
             </div>
         </div>
 
-        {{#each articles}}
+        {{#each articles}} {{#unless this.saved}}
         <div class="row">
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-panel teal">
                         <span class="white-text teal">
-                            <h5>{{this.title}}</h5>
+                            <a href={{this.link}}><h5>{{this.title}}</h5></a>
                         </span>
                     </div>
                     <div class="card-panel white">
@@ -25,17 +25,13 @@
                                     <h5>Description</h5>
                                 </li>
                                 <li>{{this.description}}</li>
-                                <li>
-                                    <h5>Link</h5>
-                                </li>
-                                <li>{{this.link}}</li>
                             </ul>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-        {{/each}}
+        {{/unless}} {{/each}}
 
     </div>
 
