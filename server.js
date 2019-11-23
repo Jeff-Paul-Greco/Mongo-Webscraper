@@ -144,6 +144,20 @@ app.get("/articles/:id", function (req, res) {
         });
 });
 
+app.get("/comments/:id", function (req, res) {
+
+    db.Comment.findOne({ _id: req.params.id })
+
+        .then(function (dbArticle) {
+
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+
+            res.json(err);
+        });
+});
+
 
 app.post("/articles/:id", function (req, res) {
 
