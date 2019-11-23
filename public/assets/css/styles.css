@@ -2,8 +2,27 @@ body {
     background: black;
 }
 
+html {
+    font-family: 'Orbitron', sans-serif;;
+}
+
 a {
     color: white
+}
+
+.modal-content {
+    background-image: URL("./../img/Black-Gradient-Background.jpg");
+    color: white
+}
+
+.modal {
+    margin-top: 65px;
+    background: rgb(65, 224, 73);
+}
+
+textarea {
+    min-height: 80px;
+    background: white;
 }
 
 .container {
@@ -83,6 +102,10 @@ a {
     border-radius: 15px 15px 15px 15px;
     margin-bottom: 0px;
 } 
+
+.card-content {
+    font-size: 19px;
+}
 
 .save-article-btn, .comment-btn, .delete-article-btn {
     margin-top: 37px;

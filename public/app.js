@@ -3,6 +3,7 @@ $(document).on("click", ".comment-btn", function () {
     $('.modal').modal();
     $('.modal').modal('open');
     $(".modal-content").empty();
+    $(".modal-footer").empty();
     var id = $(this).attr("data-id");
 
     $.ajax({
@@ -22,7 +23,7 @@ $(document).on("click", ".comment-btn", function () {
                 })
                     .then(function (data) {
                         console.log(data)
-                        $(".modal-content").append("<p>" + data.body + "</p>" + "<button class='btn btn-medium delete-comment' data-id='" + data._id + "'>Delete</button>")
+                        $(".modal-content").prepend("<tr> <td>" + data.body + "</td> <td> <button class='btn btn-medium delete-comment' data-id='" + data._id + "'>Delete</button> </td> </tr>")
                         console.log(data.body)
                     });
 
@@ -35,7 +36,7 @@ $(document).on("click", ".comment-btn", function () {
 
             $(".modal-content").append("<textarea id='bodyinput' name='body'></textarea>");
 
-            $(".modal-content").append("<button class='btn btn-medium' data-id='" + data._id + "' id='save-comment'>Post</button>");
+            $(".modal-footer").append("<button class='btn btn-medium' data-id='" + data._id + "' id='save-comment'>Post</button>");
 
         });
 });
