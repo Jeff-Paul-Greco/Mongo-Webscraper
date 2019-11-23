@@ -12,13 +12,24 @@ $(document).on("click", ".comment-btn", function () {
 
         .then(function (data) {
 
-            for (i = 0; i < data.comment.length; i++) {
-                $(".modal-content").append("<p>" + data.comment[i] + "</p>" + "<button class='btn btn-medium delete-comment' data-id='" + data.comment[i] + "'>Delete</button>")
-                console.log(data.comment[i])
-            }
-            
+            let title = data.title;
 
-            $(".modal-content").append("<h6>" + data.title + "</h6>");
+            for (i = 0; i < data.comment.length; i++) {
+                var id = data.comment[i];
+                $.ajax({
+                    method: "GET",
+                    url: "/comments/" + id
+                })
+                    .then(function (data) {
+                        console.log(data)
+                        $(".modal-content").append("<p>" + data.body + "</p>" + "<button class='btn btn-medium delete-comment' data-id='" + data._id + "'>Delete</button>")
+                        console.log(data.body)
+                    });
+
+            }
+            console.log(data)
+
+            $(".modal-content").append("<h6>" + title + "</h6>");
 
             $(".modal-content").append("<p>New Comment</p>");
 
