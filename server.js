@@ -105,6 +105,19 @@ app.get("/clear", function (err, res) {
         });
 });
 
+app.delete("/delete/:id", function (req, res) {
+    db.Article.deleteOne({_id: req.params.id})
+        .then(function (dbArticles) {
+            res.render("saved", {
+                articles: dbArticles
+            });
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+        
+});
+
 app.get("/articles/:id", function (req, res) {
 
     db.Article.findOne({ _id: req.params.id })
