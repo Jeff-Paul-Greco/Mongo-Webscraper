@@ -117,11 +117,23 @@ app.delete("/delete/:id", function (req, res) {
         });   
 });
 
+app.delete("/deletecomment/:id", function (req, res) {
+    db.Comment.deleteOne({_id: req.params.id})
+        .then(function (dbArticles) {
+            res.render("saved", {
+                articles: dbArticles
+            });
+        })
+        .catch(function (err) {
+            res.json(err);
+        });   
+});
+
 app.get("/articles/:id", function (req, res) {
 
     db.Article.findOne({ _id: req.params.id })
 
-        .populate("comment")
+        .populate("comments")
         .then(function (dbArticle) {
 
             res.json(dbArticle);
@@ -138,7 +150,7 @@ app.post("/articles/:id", function (req, res) {
     db.Comment.create(req.body)
         .then(function (dbComment) {
 
-            return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+            return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true });
         })
         .then(function (dbArticle) {
 

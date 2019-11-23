@@ -84,7 +84,10 @@ a {
     margin-bottom: 0px;
 } 
 
-.save-article-btn {
-    display:inline-block;
+.save-article-btn, .comment-btn, .delete-article-btn {
+    margin-top: 37px;
 }
 
+.comment-btn {
+    margin-right: 8px;
+}
