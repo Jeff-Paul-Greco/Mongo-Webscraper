@@ -114,8 +114,7 @@ app.delete("/delete/:id", function (req, res) {
         })
         .catch(function (err) {
             res.json(err);
-        });
-        
+        });   
 });
 
 app.get("/articles/:id", function (req, res) {
