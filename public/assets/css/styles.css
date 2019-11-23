@@ -75,10 +75,16 @@ a {
 
 .card-panel-bottom {
     border-radius: 0px 0px 10px 10px;
-    background: rgb(6, 129, 12);
+    background: rgb(65, 224, 73);
+    margin-bottom: 0px;
 }
 
 .card {
     border-radius: 15px 15px 15px 15px;
+    margin-bottom: 0px;
 } 
+
+.save-article-btn {
+    display:inline-block;
+}
 
