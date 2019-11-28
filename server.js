@@ -47,6 +47,11 @@ app.get("/scrape", function (req, res) {
             result.description = $(this)
                 .children("p + p")
                 .text();
+            result.image = $(this)
+                .children("p")
+                .children("img")
+                .attr("src");
+
 
             var titleCut = result.title.split("Continue", 1);
             console.log(titleCut);
@@ -106,7 +111,7 @@ app.get("/clear", function (err, res) {
 });
 
 app.delete("/delete/:id", function (req, res) {
-    db.Article.deleteOne({_id: req.params.id})
+    db.Article.deleteOne({ _id: req.params.id })
         .then(function (dbArticles) {
             res.render("saved", {
                 articles: dbArticles
@@ -114,11 +119,11 @@ app.delete("/delete/:id", function (req, res) {
         })
         .catch(function (err) {
             res.json(err);
-        });   
+        });
 });
 
 app.delete("/deletecomment/:id", function (req, res) {
-    db.Comment.deleteOne({_id: req.params.id})
+    db.Comment.deleteOne({ _id: req.params.id })
         .then(function (dbArticles) {
             res.render("saved", {
                 articles: dbArticles
@@ -126,7 +131,7 @@ app.delete("/deletecomment/:id", function (req, res) {
         })
         .catch(function (err) {
             res.json(err);
-        });   
+        });
 });
 
 app.get("/articles/:id", function (req, res) {
@@ -177,7 +182,7 @@ app.post("/articles/:id", function (req, res) {
 });
 
 app.put("/saved/:id", function (req, res) {
-    db.Article.update( { _id: req.params.id }, { saved: true } ).then(
+    db.Article.update({ _id: req.params.id }, { saved: true }).then(
         function (dbArticle) {
             res.json(dbArticle);
         }
