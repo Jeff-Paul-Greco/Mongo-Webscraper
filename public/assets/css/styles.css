@@ -10,6 +10,10 @@ a {
     color: white
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 .modal-content {
     background-image: URL("./../img/Black-Gradient-Background.jpg");
     color: white
@@ -117,5 +121,5 @@ textarea {
 
 .banners {
     min-width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
